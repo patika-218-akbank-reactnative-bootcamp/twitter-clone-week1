@@ -1,3 +1,5 @@
+import 'react-native-gesture-handler';
+
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -6,58 +8,52 @@
  * @flow strict-local
  */
 
-import React from "react";
-import {ScrollView, StyleSheet, Text, View} from "react-native";
+import React, {useCallback, useMemo, useState} from 'react';
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 // JS exports/imports
-import Banner from "./components/Banner";
-import ProfileBio from "./components/ProfileBio";
-import Tweets from "./components/Tweets";
+import Banner from './components/Banner';
+import ProfileBio, {IMAGE_SIZE, IMAGE_URL} from './components/ProfileBio';
+import Tweets from './components/Tweets';
+import UserProvider from './provider/UserProvider';
+
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+
+import ProfileScreen from './screens/profile';
+import HomeScreen from './screens/home';
+
+const StackNav = createStackNavigator();
+
+/**
+ * Re renders:
+ * - Parent component yeniden render olursa
+ * - Props değiştiğinde
+ * - State değiştiğinde
+ */
+
+// const useCustomCallback = (func, depArray) => {
+//   const myFunc = useMemo(() => func, depArray);
+//   return myFunc;
+// };
 
 const App = () => {
   return (
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      style={styles.scrollView}>
-      <Banner />
-      <ProfileBio
-        imageUrl="https://picsum.photos/200/200"
-        title="Enes Ozturk"
-        username="@enesozt_"
-        description="Software Developer"
-      />
-      <Tweets />
-    </ScrollView>
+    <NavigationContainer>
+      <UserProvider>
+        <StackNav.Navigator>
+          <StackNav.Screen
+            name="Home"
+            component={() => <HomeScreen />}
+            options={{
+              title: 'Ana Sayfa',
+            }}
+          />
+          <StackNav.Screen name="Profile" component={ProfileScreen} />
+        </StackNav.Navigator>
+      </UserProvider>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: "transparent",
-    height: "100%",
-    width: "100%",
-    display: "flex",
-  },
-  innerContainer: {
-    backgroundColor: "gray",
-    padding: 8,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: "400",
-  },
-  highlight: {
-    fontWeight: "700",
-  },
-});
 
 export default App;

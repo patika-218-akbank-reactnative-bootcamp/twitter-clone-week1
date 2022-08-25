@@ -1,126 +1,79 @@
-import React from "react";
-import {
-  View,
-  Text,
-  Pressable,
-  TouchableOpacity,
-  Alert,
-  Image,
-} from "react-native";
+import React, {
+  useState,
+  useEffect,
+  memo,
+  useMemo,
+  useCallback,
+  useContext,
+} from 'react';
+import {View, Text, Pressable} from 'react-native';
+import {UserContext} from '../context/user';
+import TweetCounter from './TweetCounter';
 
-const Tabs = ({children}) => {
-  return (
-    <View
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        padding: 8,
-      }}>
-      {children}
-    </View>
-  );
+import TweetList from './TweetList';
+import TweetTabs from './TweetTabs';
+
+// function topla(a, b) {
+//   return a + b;
+// }
+// topla(2, 3); // 5
+// topla(2, 3); // 5
+
+const useCustomState = intialState => {
+  const state = intialState;
+
+  function handleChangeState(param) {
+    // update state with param
+  }
+
+  return [state, handleChangeState];
 };
 
-const Tab = ({title}) => {
-  return (
-    <TouchableOpacity
-      activeOpacity={0.5}
-      onPress={() => {
-        Alert.alert("You pressed " + title);
-      }}
-      style={{
-        padding: 8,
-        backgroundColor: "rgba(0,0,0,0.3)",
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: "rgba(0,0,0,0.5)",
-        flex: 1,
-      }}>
-      <Text
-        style={{
-          textAlign: "center",
-        }}>
-        {title}
-      </Text>
-    </TouchableOpacity>
-  );
-};
+// stateless components
+// destruct
+// array destruction
+const Tweets = ({tweetCount, setTweetCount}) => {
+  const {user} = useContext(UserContext);
+  const [tweets, setTweets] = useState([]);
 
-const Tweet = ({user, tweetText, tweetDate}) => {
-  return (
-    <Pressable
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        padding: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: "rgba(0,0,0,0.3)",
-      }}>
-      <Image
-        style={{
-          width: 64,
-          height: 64,
-          borderRadius: 32,
-          backgroundColor: "rgba(0,0,0,0.3)",
-          marginRight: 8,
-        }}
-        source={{
-          uri: user.imageUrl,
-        }}
-      />
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
-        }}>
-        <View style={{display: "flex", flexDirection: "row", marginBottom: 8}}>
-          <Text
-            style={{
-              fontWeight: "600",
-              fontSize: 16,
-            }}>{`${user.firstName} ${user.lastName}`}</Text>
-          <Text style={{marginLeft: 4}}>{user.username}</Text>
-          <Text style={{marginLeft: 16}}>{tweetDate}</Text>
-        </View>
-        <View>
-          <Text>{tweetText}</Text>
-        </View>
-      </View>
-    </Pressable>
-  );
-};
+  // first param: function to invoke
+  // second param: dependency array
+  useEffect(() => {
+    setTimeout(() => {
+      setTweets([
+        {
+          id: 1,
+          user: {
+            firstName: 'Enes',
+            lastName: 'Ozturk',
+            username: '@enesozt_',
+            imageUrl: 'https://picsum.photos/200/200',
+          },
+          date: '2 hour ago',
+          text: 'Kodluyoruz React Native Bootcamp Kodluyoruz React Native Bootcamp Kodluyoruz React Native Bootcamp Kodluyoruz React Native Bootcamp :)',
+        },
+        {
+          id: 2,
+          user: {
+            firstName: 'Enes',
+            lastName: 'Ozturk',
+            username: '@enesozt_',
+            imageUrl: 'https://picsum.photos/200/200',
+          },
+          date: '1 hour ago',
+          text: 'Kodluyoruz React Native Bootcamp :)',
+        },
+      ]);
+    }, 2000);
+  }, []);
 
-const Tweets = () => {
-  return (
+  return user ? (
     <View>
-      <Tabs>
-        <Tab title="Tweet" />
-        <Tab title="Replys" />
-        <Tab title="Likes" />
-      </Tabs>
-      <Tweet
-        user={{
-          firstName: "Enes",
-          lastName: "Ozturk",
-          username: "@enesozt_",
-          imageUrl: "https://picsum.photos/200/200",
-        }}
-        tweetDate="1 hour ago"
-        tweetText="Kodluyoruz React Native Bootcamp :)"
-      />
-      <Tweet
-        user={{
-          firstName: "Enes",
-          lastName: "Ozturk",
-          username: "@enesozt_",
-          imageUrl: "https://picsum.photos/200/200",
-        }}
-        tweetDate="1 hour ago"
-        tweetText="Hello!! :p :)"
-      />
+      <TweetCounter tweetCount={tweetCount} setTweetCount={setTweetCount} />
+      <TweetTabs activeTab="Retweets" />
+      <TweetList tweets={tweets} />
     </View>
-  );
+  ) : null;
 };
 
-export default Tweets;
+export default memo(Tweets);
