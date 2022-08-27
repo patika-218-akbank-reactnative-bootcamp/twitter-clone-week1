@@ -23,7 +23,7 @@ const BottomNavigation = () => {
   const {navigate} = useNavigation();
 
   return (
-    <BottomNav.Navigator screenOptions={{}}>
+    <BottomNav.Navigator initialRouteName="Notifications">
       <BottomNav.Screen name="Home" component={HomeScreen} />
       <BottomNav.Screen
         name="Search"

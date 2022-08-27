@@ -19,7 +19,11 @@ const StackNavigator = () => {
   return (
     <StackNav.Navigator screenOptions={{headerShown: false}}>
       <StackNav.Screen name="BottomNav" component={BottomNavigation} />
-      <StackNav.Screen name="Tweet" component={TweetScreen} />
+      <StackNav.Screen
+        options={{headerShown: true}}
+        name="Tweet"
+        component={TweetScreen}
+      />
     </StackNav.Navigator>
   );
 };
@@ -28,20 +32,12 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItem
+        label="Home"
+        onPress={() => props.navigation.navigate('HomeStackNav')}
+      />
+      <DrawerItem
         label="Profile"
         onPress={() => props.navigation.navigate('Profile')}
-      />
-      <DrawerItem
-        label="Home"
-        onPress={() => props.navigation.navigate('Home')}
-      />
-      <DrawerItem
-        label="Notifications"
-        onPress={() => props.navigation.navigate('Notifications')}
-      />
-      <DrawerItem
-        label="Messages"
-        onPress={() => props.navigation.navigate('Messages')}
       />
     </DrawerContentScrollView>
   );
@@ -52,8 +48,12 @@ const DrawerNavigation = () => {
     <DrawerNav.Navigator
       screenOptions={{headerShown: false}}
       drawerContent={CustomDrawerContent}>
-      <DrawerNav.Screen name="DrawerNav" component={StackNavigator} />
-      <DrawerNav.Screen name="Profile" component={ProfileScreen} />
+      <DrawerNav.Screen name="HomeStackNav" component={StackNavigator} />
+      <DrawerNav.Screen
+        options={{headerShown: true}}
+        name="Profile"
+        component={ProfileScreen}
+      />
     </DrawerNav.Navigator>
   );
 };

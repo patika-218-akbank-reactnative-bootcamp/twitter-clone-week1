@@ -34,9 +34,7 @@ const App = () => {
       <ThemeProvider>
         <NavigationContainer>
           <UserProvider>
-            {/* <BottomNavigation /> */}
             <DrawerNavigation />
-            {/* <StackNavigation /> */}
           </UserProvider>
         </NavigationContainer>
       </ThemeProvider>
