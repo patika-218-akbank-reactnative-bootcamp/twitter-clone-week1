@@ -1,15 +1,19 @@
 import React from 'react';
 import {Image, Pressable, Text, View} from 'react-native';
+import useTheme from '../hooks/useTheme';
 
 const Tweet = ({id, user, tweetText, tweetDate, handleOnDelete}) => {
+  const {theme} = useTheme();
+
   return (
     <Pressable
       style={{
         display: 'flex',
         flexDirection: 'row',
         padding: 16,
-        borderBottomWidth: 1,
+        borderBottomWidth: 0,
         borderBottomColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: theme.backgroundColor,
       }}>
       <Image
         style={{
@@ -34,19 +38,18 @@ const Tweet = ({id, user, tweetText, tweetDate, handleOnDelete}) => {
             style={{
               fontWeight: '600',
               fontSize: 16,
+              color: theme.color,
             }}>{`${user.firstName} ${user.lastName}`}</Text>
-          <Text style={{marginLeft: 4}}>{user.username}</Text>
-          <Text style={{marginLeft: 16}}>{tweetDate}</Text>
+          <Text style={{marginLeft: 4, color: theme.grayText}}>
+            {user.username}
+          </Text>
+          <Text style={{marginLeft: 16, color: theme.grayText}}>
+            {tweetDate}
+          </Text>
         </View>
         <View>
-          <Text>{tweetText}</Text>
+          <Text style={{color: theme.color}}>{tweetText}</Text>
         </View>
-        <Pressable
-          style={{width: 24, height: 24, backgroundColor: 'red'}}
-          onPress={() => {
-            handleOnDelete(id);
-          }}
-        />
       </View>
     </Pressable>
   );

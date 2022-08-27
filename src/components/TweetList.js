@@ -1,7 +1,13 @@
-import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {ThemeContext} from '../context/theme';
+import Banner from './Banner';
+import ProfileBio from './ProfileBio';
 
 import Tweet from './Tweet';
+import TweetTabs from './TweetTabs';
+
+const TWEET_HEIGHT = 200;
 
 // hoisting
 // arrow functon / anonymous function
@@ -67,23 +73,60 @@ class TweetList extends React.Component {
     });
   }
 
+  renderListHeader() {
+    return (
+      <>
+        <Banner />
+        <ProfileBio
+          imageUrl="https://picsum.photos/200/200"
+          title="Enes Ozturk"
+          username="@enesozt_"
+          description="Software Developer"
+        />
+        <TweetTabs activeTab="Retweets" />
+      </>
+    );
+  }
+
   // this.state
   // this.props
   render() {
     return (
-      <View style={styles.container}>
-        {this.props.tweets.map((item, index) => {
+      <ThemeContext.Consumer>
+        {({theme}) => {
           return (
-            <Tweet
-              handleOnDelete={this.handleDeleteTweet}
-              id={item.id}
-              user={item.user}
-              tweetDate={item.date}
-              tweetText={item.text}
+            <FlatList
+              style={{
+                backgroundColor: theme.backgroundColor,
+              }}
+              ItemSeparatorComponent={() => {
+                return (
+                  <View
+                    style={{
+                      width: '100%',
+                      height: 1,
+                      backgroundColor: theme.grayText,
+                    }}
+                  />
+                );
+              }}
+              maxToRenderPerBatch={10}
+              ListHeaderComponent={this.renderListHeader}
+              keyExtractor={(item, index) => `tweet-${item.id}`}
+              data={this.props.tweets}
+              renderItem={({item}) => (
+                <Tweet
+                  handleOnDelete={this.handleDeleteTweet}
+                  id={item.id}
+                  user={item.user}
+                  tweetDate={item.date}
+                  tweetText={item.text}
+                />
+              )}
             />
           );
-        })}
-      </View>
+        }}
+      </ThemeContext.Consumer>
     );
   }
 }

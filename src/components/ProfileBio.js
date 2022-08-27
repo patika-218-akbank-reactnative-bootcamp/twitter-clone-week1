@@ -1,6 +1,8 @@
 import React, {useContext, useEffect} from 'react';
 import {View, Text, StyleSheet, Linking} from 'react-native';
+
 import {UserContext} from '../context/user';
+import useTheme from '../hooks/useTheme';
 
 import ProfileImage from './ProfileImage';
 
@@ -11,27 +13,54 @@ import ProfileImage from './ProfileImage';
 // object destruction
 const ProfileBio = ({title, username, description, imageUrl}) => {
   const {user, setUser} = useContext(UserContext);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setUser({
-        title: 'Enes Ozturk',
-      });
-    }, 2000);
-  }, []);
+  const {theme, toggleTheme} = useTheme();
 
   const onPressWebsite = () => {
     Linking.openURL('https://www.ozturkenes.com');
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: theme.backgroundColor,
+        },
+      ]}>
       <ProfileImage resimKaynagi={imageUrl} />
-      <Text style={styles.titleStyles}>{user?.title}</Text>
-      <Text style={styles.usernameStyles}>{username}</Text>
-      <Text style={styles.descriptionStyles}>{description}</Text>
-      <Text style={styles.websiteLinkStyles} onPress={onPressWebsite}>
+      <Text
+        style={[
+          styles.titleStyles,
+          {
+            color: theme.color,
+          },
+        ]}>
+        {user?.title}
+      </Text>
+      <Text style={[styles.usernameStyles, {color: theme.grayText}]}>
+        {username}
+      </Text>
+      <Text
+        style={[
+          styles.descriptionStyles,
+          {
+            color: theme.color,
+          },
+        ]}>
+        {description}
+      </Text>
+      <Text
+        style={[
+          styles.websiteLinkStyles,
+          {
+            color: theme.color,
+          },
+        ]}
+        onPress={onPressWebsite}>
         ozturkenes.com
+      </Text>
+      <Text style={styles.websiteLinkStyles} onPress={toggleTheme}>
+        Toggle Theme
       </Text>
     </View>
   );
@@ -42,7 +71,6 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 16,
     paddingTop: 58,
-    backgroundColor: 'rgba(0,0,0,0.3)',
   },
   titleStyles: {
     fontSize: 18,

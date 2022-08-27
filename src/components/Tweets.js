@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import {View, Text, Pressable} from 'react-native';
 import {UserContext} from '../context/user';
+import useTheme from '../hooks/useTheme';
 import TweetCounter from './TweetCounter';
 
 import TweetList from './TweetList';
@@ -33,8 +34,9 @@ const useCustomState = intialState => {
 // destruct
 // array destruction
 const Tweets = ({tweetCount, setTweetCount}) => {
-  const {user} = useContext(UserContext);
+  const {user, setUser} = useContext(UserContext);
   const [tweets, setTweets] = useState([]);
+  const {theme} = useTheme();
 
   // first param: function to invoke
   // second param: dependency array
@@ -64,16 +66,13 @@ const Tweets = ({tweetCount, setTweetCount}) => {
           text: 'Kodluyoruz React Native Bootcamp :)',
         },
       ]);
+      setUser({
+        title: 'Enes Ozturk',
+      });
     }, 2000);
   }, []);
 
-  return user ? (
-    <View>
-      <TweetCounter tweetCount={tweetCount} setTweetCount={setTweetCount} />
-      <TweetTabs activeTab="Retweets" />
-      <TweetList tweets={tweets} />
-    </View>
-  ) : null;
+  return user ? <TweetList tweets={tweets} /> : null;
 };
 
 export default memo(Tweets);

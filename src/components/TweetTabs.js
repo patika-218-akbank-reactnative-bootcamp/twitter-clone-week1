@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View} from 'react-native';
+import {ThemeContext} from '../context/theme';
+import useTheme from '../hooks/useTheme';
 import Tab from './Tab';
 
 // Life cycle methods
@@ -53,22 +55,30 @@ class TweetTabs extends React.PureComponent {
 
   render() {
     return (
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          padding: 8,
-        }}>
-        {this.state.tabs.map((item, index) => {
+      <ThemeContext.Consumer>
+        {({theme}) => {
           return (
-            <Tab
-              title={item}
-              isActive={this.state.selectedTab === item}
-              onPress={this.handlePressTab}
-            />
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                padding: 8,
+                backgroundColor: theme.backgroundColor,
+              }}>
+              {this.state.tabs.map((item, index) => {
+                return (
+                  <Tab
+                    key={`tab-${index}`}
+                    title={item}
+                    isActive={this.state.selectedTab === item}
+                    onPress={this.handlePressTab}
+                  />
+                );
+              })}
+            </View>
           );
-        })}
-      </View>
+        }}
+      </ThemeContext.Consumer>
     );
   }
 }
