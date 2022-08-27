@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 
 // import Icons from 'react-native-vector-icons/Feather';
 import useTheme from '@twitter/hooks/useTheme';
-import HomeNavigation from '@twitter/navigation/homeNavigation';
+import HomeScreen from '@twitter/screens/home';
 
 const BottomNav = createBottomTabNavigator();
 
@@ -23,11 +23,8 @@ const BottomNavigation = () => {
   const {navigate} = useNavigation();
 
   return (
-    <BottomNav.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <BottomNav.Screen name="Home" component={HomeNavigation} />
+    <BottomNav.Navigator screenOptions={{}}>
+      <BottomNav.Screen name="Home" component={HomeScreen} />
       <BottomNav.Screen
         name="Search"
         options={{
