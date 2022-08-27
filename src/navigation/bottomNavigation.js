@@ -1,10 +1,12 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {Pressable, Text, View} from 'react-native';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
-import HomeNavigation from './homeNavigation';
+
+// import Icons from 'react-native-vector-icons/Feather';
+import useTheme from '@twitter/hooks/useTheme';
+import HomeNavigation from '@twitter/navigation/homeNavigation';
 
 const BottomNav = createBottomTabNavigator();
 
@@ -16,31 +18,10 @@ const EmptyScreen = () => {
   );
 };
 
-const Header = ({title}) => {
-  const {top} = useSafeAreaInsets();
-  const {goBack} = useNavigation();
-  const shouldGoBack = title === 'Tweet';
-
-  return (
-    <View
-      style={{
-        width: '100%',
-        backgroundColor: 'red',
-        paddingTop: top,
-        paddingBottom: 16,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <View>{shouldGoBack ? <Text onPress={goBack}>Go Back</Text> : null}</View>
-      <Text>{title}</Text>
-      <View></View>
-    </View>
-  );
-};
-
 const BottomNavigation = () => {
+  const {theme} = useTheme();
+  const {navigate} = useNavigation();
+
   return (
     <BottomNav.Navigator
       screenOptions={{
@@ -48,13 +29,34 @@ const BottomNavigation = () => {
       }}>
       <BottomNav.Screen name="Home" component={HomeNavigation} />
       <BottomNav.Screen
-        options={{headerShown: true}}
         name="Search"
+        options={{
+          headerShown: true,
+          tabBarActiveTintColor: theme.accentColor,
+        }}
         component={EmptyScreen}
       />
       <BottomNav.Screen
-        options={{headerShown: true}}
-        name="Communities"
+        options={{
+          headerShown: true,
+          tabBarButton: () => {
+            return (
+              <View style={{width: 64}}>
+                <Pressable
+                  style={{
+                    width: 64,
+                    height: 64,
+                    backgroundColor: theme.accentColor,
+                    position: 'absolute',
+                    top: -16,
+                    borderRadius: 32,
+                  }}
+                  onPress={() => navigate('Search')}></Pressable>
+              </View>
+            );
+          },
+        }}
+        name="Camera"
         component={EmptyScreen}
       />
       <BottomNav.Screen
