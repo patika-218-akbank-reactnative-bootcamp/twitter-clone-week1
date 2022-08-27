@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@twitter/assets/*": ["./assets/*"],
+      "@twitter/components/*": ["./components/*"],
+      "@twitter/constants/*": ["./constants/*"],
+      "@twitter/navigation/*": ["./navigation/*"],
+      "@twitter/hooks/*": ["./hooks/*"],
+      "@twitter/provider/*": ["./provider/*"],
+      "@twitter/screens/*": ["./screens/*"]
+    }
+  }
+}
