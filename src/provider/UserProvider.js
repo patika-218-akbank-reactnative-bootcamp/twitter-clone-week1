@@ -5,7 +5,6 @@ import {useNavigation} from '@react-navigation/native';
 
 const UserProvider = ({children}) => {
   const [userState, setUserState] = useState(null);
-  const {navigate} = useNavigation();
 
   return (
     <UserContext.Provider
