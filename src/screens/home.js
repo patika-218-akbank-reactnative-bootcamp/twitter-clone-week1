@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {Pressable, Text, View} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -19,9 +19,13 @@ const HomeScreen = () => {
       </Pressable>
       <Pressable
         onPress={() => {
-          setOptions({headerShown: true});
+          navigate('Profile', {
+            user: {
+              name: 'Furkan',
+            },
+          });
         }}>
-        <Text>Show Header</Text>
+        <Text>Go to Furkan's Profile</Text>
       </Pressable>
     </View>
   );

@@ -24,6 +24,11 @@ const StackNavigator = () => {
         name="Tweet"
         component={TweetScreen}
       />
+      <StackNav.Screen
+        options={{headerShown: true}}
+        name="UserProfile"
+        component={ProfileScreen}
+      />
     </StackNav.Navigator>
   );
 };
