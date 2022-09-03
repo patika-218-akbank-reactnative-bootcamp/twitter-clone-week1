@@ -1,9 +1,11 @@
 import React from 'react';
 import {Image, Pressable, Text, View} from 'react-native';
+
 import useTheme from '../hooks/useTheme';
 
 const Tweet = ({id, user, tweetText, tweetDate, handleOnDelete}) => {
   const {theme} = useTheme();
+  const dateFormatted = new Date(tweetDate).toDateString();
 
   return (
     <Pressable
@@ -44,7 +46,7 @@ const Tweet = ({id, user, tweetText, tweetDate, handleOnDelete}) => {
             {user.username}
           </Text>
           <Text style={{marginLeft: 16, color: theme.grayText}}>
-            {tweetDate}
+            {dateFormatted}
           </Text>
         </View>
         <View>

@@ -1,0 +1,130 @@
+{
+  "tweets": [
+    {
+      "id": 1,
+      "title": "Merahaba Kodluyoruz!!",
+      "author": {
+        "id": 1,
+        "username": "enesozt_",
+        "firstName": "Enes",
+        "lastName": "Ozturk",
+        "imageUrl": "https://placehold.jp/150x150.png"
+      },
+      "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+    },
+    {
+      "id": 2,
+      "title": "Kodluyoruz!!",
+      "author": {
+        "id": 1,
+        "username": "enes",
+        "firstName": "Enes",
+        "lastName": "Ozturk",
+        "imageUrl": "https://placehold.jp/150x150.png"
+      },
+      "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+    },
+    {
+      "title": "New tweet!!",
+      "author": {
+        "id": 2,
+        "username": "emre",
+        "firstName": "Emre",
+        "lastName": "",
+        "imageUrl": "https://placehold.jp/3d4070/ffffff/150x150.png"
+      },
+      "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)",
+      "id": 3
+    },
+    {
+      "title": "Hi!, I'm Ahmet. I joined twitter 🎉",
+      "author": {
+        "id": 2,
+        "username": "ahmet",
+        "firstName": "Ahmet",
+        "lastName": "Selim",
+        "imageUrl": "https://placehold.jp/db6666/ffffff/150x150.png"
+      },
+      "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "receiver": {
+        "id": 2,
+        "username": "emre",
+        "firstName": "Emre",
+        "lastName": "",
+        "imageUrl": "https://placehold.jp/3d4070/ffffff/150x150.png"
+      },
+      "messages": [
+        {
+          "id": 1,
+          "text": "Merhaba",
+          "senderId": 2,
+          "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+        },
+        {
+          "id": 1,
+          "text": "Merhaba",
+          "senderId": 2,
+          "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+        },
+        {
+          "id": 1,
+          "text": "Merhaba",
+          "senderId": 2,
+          "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+        },
+        {
+          "id": 1,
+          "text": "Merhaba",
+          "senderId": 2,
+          "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+        },
+        {
+          "id": 1,
+          "senderId": 1,
+          "text": "Ne yaptın?",
+          "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "receiver": {
+        "id": 3,
+        "username": "ahmet",
+        "firstName": "Ahmet",
+        "lastName": "",
+        "imageUrl": "https://placehold.jp/db6666/ffffff/150x150.png"
+      },
+      "messages": [
+        {
+          "id": 1,
+          "text": "Selam",
+          "senderId": 3,
+          "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+        },
+        {
+          "id": 1,
+          "senderId": 1,
+          "text": "Selam, nasıl gidiyor?",
+          "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+        }
+      ]
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

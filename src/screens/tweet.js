@@ -1,10 +1,20 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {Text, View} from 'react-native';
+
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const TweetScreen = () => {
+  const {setOptions} = useNavigation();
+  const {
+    params: {id, text, owner},
+  } = useRoute();
+  setOptions({
+    title: `${owner}'s Tweet`,
+  });
+
   return (
     <View>
-      <Text>tweet detail screen</Text>
+      <Text>{text}</Text>
     </View>
   );
 };
