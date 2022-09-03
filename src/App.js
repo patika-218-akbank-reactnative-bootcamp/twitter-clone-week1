@@ -10,11 +10,15 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {Provider} from 'react-redux';
 
 // JS exports/imports
 import DrawerNavigation from '@twitter/navigation/drawerNavigation';
 import ThemeProvider from '@twitter/provider/ThemeProvider';
 import UserProvider from '@twitter/provider/UserProvider';
+
+import NewTweetProvider from './provider/NewTweetProvider';
+import {store} from './store';
 
 /**
  * Re renders:
@@ -32,11 +36,15 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <NavigationContainer>
-          <UserProvider>
-            <DrawerNavigation />
-          </UserProvider>
-        </NavigationContainer>
+        <Provider store={store}>
+          <NavigationContainer>
+            <UserProvider>
+              <NewTweetProvider>
+                <DrawerNavigation />
+              </NewTweetProvider>
+            </UserProvider>
+          </NavigationContainer>
+        </Provider>
       </ThemeProvider>
     </SafeAreaProvider>
   );

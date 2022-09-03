@@ -1,8 +1,7 @@
 {
   "tweets": [
     {
-      "id": 1,
-      "title": "Merahaba Kodluyoruz!!",
+      "title": "React Native bir harika dostum",
       "author": {
         "id": 1,
         "username": "enesozt_",
@@ -10,43 +9,92 @@
         "lastName": "Ozturk",
         "imageUrl": "https://placehold.jp/150x150.png"
       },
-      "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+      "date": "Sat Sep 03 2022 13:38:04 GMT+0300 (+03)",
+      "id": 7
     },
     {
-      "id": 2,
-      "title": "Kodluyoruz!!",
+      "title": "11111",
       "author": {
         "id": 1,
-        "username": "enes",
+        "username": "enesozt_",
         "firstName": "Enes",
         "lastName": "Ozturk",
         "imageUrl": "https://placehold.jp/150x150.png"
       },
-      "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)"
+      "date": "Sat Sep 03 2022 14:45:22 GMT+0300 (+03)",
+      "id": 8
     },
     {
-      "title": "New tweet!!",
+      "title": "22222",
       "author": {
-        "id": 2,
-        "username": "emre",
-        "firstName": "Emre",
-        "lastName": "",
-        "imageUrl": "https://placehold.jp/3d4070/ffffff/150x150.png"
+        "id": 1,
+        "username": "enesozt_",
+        "firstName": "Enes",
+        "lastName": "Ozturk",
+        "imageUrl": "https://placehold.jp/150x150.png"
       },
-      "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)",
-      "id": 3
+      "date": "Sat Sep 03 2022 14:45:52 GMT+0300 (+03)",
+      "id": 9
     },
     {
-      "title": "Hi!, I'm Ahmet. I joined twitter 🎉",
+      "title": "33333",
       "author": {
-        "id": 2,
-        "username": "ahmet",
-        "firstName": "Ahmet",
-        "lastName": "Selim",
-        "imageUrl": "https://placehold.jp/db6666/ffffff/150x150.png"
+        "id": 1,
+        "username": "enesozt_",
+        "firstName": "Enes",
+        "lastName": "Ozturk",
+        "imageUrl": "https://placehold.jp/150x150.png"
       },
-      "date": "Sat Sep 03 2022 11:28:48 GMT+0300 (GMT+03:00)",
-      "id": 3
+      "date": "Sat Sep 03 2022 14:47:37 GMT+0300 (+03)",
+      "id": 10
+    },
+    {
+      "title": "44444",
+      "author": {
+        "id": 1,
+        "username": "enesozt_",
+        "firstName": "Enes",
+        "lastName": "Ozturk",
+        "imageUrl": "https://placehold.jp/150x150.png"
+      },
+      "date": "Sat Sep 03 2022 14:47:52 GMT+0300 (+03)",
+      "id": 11
+    },
+    {
+      "title": "5555",
+      "author": {
+        "id": 1,
+        "username": "enesozt_",
+        "firstName": "Enes",
+        "lastName": "Ozturk",
+        "imageUrl": "https://placehold.jp/150x150.png"
+      },
+      "date": "Sat Sep 03 2022 14:48:16 GMT+0300 (+03)",
+      "id": 12
+    },
+    {
+      "title": "6666",
+      "author": {
+        "id": 1,
+        "username": "enesozt_",
+        "firstName": "Enes",
+        "lastName": "Ozturk",
+        "imageUrl": "https://placehold.jp/150x150.png"
+      },
+      "date": "Sat Sep 03 2022 14:48:45 GMT+0300 (+03)",
+      "id": 13
+    },
+    {
+      "title": "666677788",
+      "author": {
+        "id": 1,
+        "username": "enesozt_",
+        "firstName": "Enes",
+        "lastName": "Ozturk",
+        "imageUrl": "https://placehold.jp/150x150.png"
+      },
+      "date": "Sat Sep 03 2022 14:48:52 GMT+0300 (+03)",
+      "id": 14
     }
   ],
   "comments": [

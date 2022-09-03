@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   Alert,
   FlatList,
@@ -9,28 +9,38 @@ import {
   View,
 } from 'react-native';
 
+import axios from 'axios';
+import {ThemeContext} from 'context/theme';
+import {useDispatch, useSelector} from 'react-redux';
+
 import Tweet from '@twitter/components/Tweet';
 import useTheme from '@twitter/hooks/useTheme';
 
+import {setTweets, toggleTheme} from '../store';
+
 const HomeScreen = () => {
-  const [tweets, setTweets] = useState([]);
+  const tweets = useSelector(state => state.tweets.feedItems);
+  const {activeTheme} = useSelector(state => state.theme);
+  console.log(activeTheme);
+  const dispatch = useDispatch();
+  const [refreshing, setRefreshing] = useState(false);
+
   const {theme} = useTheme();
 
-  const handleGetTweets = () => {
-    fetch(`http://localhost:3000/tweets`)
-      .then(async result => {
-        const data = await result.json();
-        setTweets(data);
+  const handleGetTweets = onEnd => {
+    axios
+      .get('http://localhost:3000/tweets')
+      .then(response => {
+        dispatch(setTweets({tweets: response.data}));
       })
-      .catch(error => {
-        Alert.alert('Hata!');
-        console.log(error);
-      })
-      .finally(() => {});
+      .finally(() => {
+        onEnd?.();
+      });
   };
 
   useEffect(() => {
     handleGetTweets();
+    dispatch(toggleTheme());
   }, []);
 
   const renderTweetItem = ({item}) => {
@@ -52,12 +62,21 @@ const HomeScreen = () => {
     );
   };
 
+  const handleRefresh = () => {
+    setRefreshing(true);
+    handleGetTweets(() => {
+      setRefreshing(false);
+    });
+  };
+
   return (
     <FlatList
       data={tweets}
+      refreshing={refreshing}
+      onRefresh={handleRefresh}
       renderItem={renderTweetItem}
       ItemSeparatorComponent={renderTweetSeparatorItem}
-      keyExtractor={index => `tweet-${index}`}
+      keyExtractor={(item, index) => `tweet-${item.id}`}
     />
   );
 };
